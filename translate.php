@@ -109,8 +109,20 @@ $client = new Google_Client();
 $client->useApplicationDefaultCredentials();
 date_default_timezone_set('America/Los_Angeles');
 
-if (isset($_GET['english'])) {
+if ($_GET['english']) {
     trans_en();
+}
+if ($_GET['chinese']) {
+    trans_zh();
+}
+if ($_GET['german']) {
+    trans_de();
+}
+if ($_GET['french']) {
+    trans_fr();
+}
+if ($_GET['spanish']) {
+    trans_es();
 }
 
 function trans_en() {
@@ -146,7 +158,137 @@ function trans_en() {
   echo '</div></div>';
 }
 
+function trans_es() {
+ 
+  $projectId = 'multitrans-170720';
+  $translate = new TranslateClient([
+    'projectId' => $projectId
+  ]);
+  $text = $_GET['spanish'];
+  $target_fr = 'fr';
+  $target_de = 'de';
+  $target_zh = 'zh';
+  $target_en = 'en';
+  $trans_fr = $translate->translate($text, [
+    'target' => $target_fr
+  ]);
+  $trans_de = $translate->translate($text, [
+    'target' => $target_de
+  ]);
+  $trans_en = $translate->translate($text, [
+    'target' => $target_en
+  ]);
+  $trans_zh = $translate->translate($text, [
+    'target' => $target_zh
+  ]);
+  echo '<div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-32" id="about">';
+  echo '<div class="w3-content w3-justify" style="max-width:600px">';
+  echo '<p> English: '.$trans_en['text'].'</p>';
+  echo '<p> French: '.$trans_fr['text'].'</p>';
+  echo '<p> Chinese: '.$trans_zh['text'].'</p>';
+  echo '<p> German: '.$trans_de['text'].'</p>';
+  echo '<p> Spanish: '.$text.'</p>';
+  echo '</div></div>';
+}
 
+function trans_de() {
+ 
+  $projectId = 'multitrans-170720';
+  $translate = new TranslateClient([
+    'projectId' => $projectId
+  ]);
+  $text = $_GET['german'];
+  $target_fr = 'fr';
+  $target_es = 'es';
+  $target_zh = 'zh';
+  $target_en = 'en';
+  $trans_fr = $translate->translate($text, [
+    'target' => $target_fr
+  ]);
+  $trans_en = $translate->translate($text, [
+    'target' => $target_en
+  ]);
+  $trans_es = $translate->translate($text, [
+    'target' => $target_es
+  ]);
+  $trans_zh = $translate->translate($text, [
+    'target' => $target_zh
+  ]);
+  echo '<div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-32" id="about">';
+  echo '<div class="w3-content w3-justify" style="max-width:600px">';
+  echo '<p> English: '.$trans_en['text'].'</p>';
+  echo '<p> French: '.$trans_fr['text'].'</p>';
+  echo '<p> Chinese: '.$trans_zh['text'].'</p>';
+  echo '<p> German: '.$text.'</p>';
+  echo '<p> Spanish: '.$trans_es['text'].'</p>';
+  echo '</div></div>';
+}
+
+function trans_fr() {
+ 
+  $projectId = 'multitrans-170720';
+  $translate = new TranslateClient([
+    'projectId' => $projectId
+  ]);
+  $text = $_GET['french'];
+  $target_es = 'es';
+  $target_de = 'de';
+  $target_zh = 'zh';
+  $target_en = 'en';
+  $trans_de = $translate->translate($text, [
+    'target' => $target_de
+  ]);
+  $trans_en = $translate->translate($text, [
+    'target' => $target_en
+  ]);
+  $trans_es = $translate->translate($text, [
+    'target' => $target_es
+  ]);
+  $trans_zh = $translate->translate($text, [
+    'target' => $target_zh
+  ]);
+  echo '<div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-32" id="about">';
+  echo '<div class="w3-content w3-justify" style="max-width:600px">';
+  echo '<p> English: '.$trans_en['text'].'</p>';
+  echo '<p> French: '.$text.'</p>';
+  echo '<p> Chinese: '.$trans_zh['text'].'</p>';
+  echo '<p> German: '.$trans_de['text'].'</p>';
+  echo '<p> Spanish: '.$trans_es['text'].'</p>';
+  echo '</div></div>';
+}
+
+function trans_zh() {
+ 
+  $projectId = 'multitrans-170720';
+  $translate = new TranslateClient([
+    'projectId' => $projectId
+  ]);
+  $text = $_GET['chinese'];
+  $target_es = 'es';
+  $target_de = 'de';
+  $target_fr = 'fr';
+  $target_en = 'en';
+  $trans_de = $translate->translate($text, [
+    'target' => $target_de
+  ]);
+  $trans_en = $translate->translate($text, [
+    'target' => $target_en
+  ]);
+  $trans_es = $translate->translate($text, [
+    'target' => $target_es
+  ]);
+  $trans_fr = $translate->translate($text, [
+    'target' => $target_fr
+  ]);
+  echo '<div class="w3-container w3-dark-grey w3-center w3-text-light-grey w3-padding-32" id="about">';
+  echo '<div class="w3-content w3-justify" style="max-width:600px">';
+  echo '<p> English: '.$trans_en['text'].'</p>';
+  echo '<p> French: '.$trans_fr['text'].'</p>';
+  echo '<p> Chinese: '.$text.'</p>';
+  echo '<p> German: '.$trans_de['text'].'</p>';
+  echo '<p> Spanish: '.$trans_es['text'].'</p>';
+  echo '</div></div>';
+}
 ?>
 
   <!-- Footer -->
